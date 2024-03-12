@@ -1,0 +1,39 @@
+#Main {
+
+  display: grid;
+  color: rgb(0, 0, 0);
+  margin: 0 10rem;
+  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+#LoadingView {
+  font-size: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#pageChange {
+  
+  display: flex;
+  /* width: 5rem; */
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+
+}
+
+#pageChange button {
+  border-radius: 20px;
+  border: none;
+  background-color: rgb(185, 181, 181);
+}
+
+#pageChange button:active {
+  background-color: rgb(233, 232, 232);
+  color: black;
+}
