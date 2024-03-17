@@ -13,6 +13,7 @@
   font-size: 5rem;
   display: flex;
   align-items: center;
+
   justify-content: center;
 }
 
@@ -36,4 +37,11 @@
 #pageChange button:active {
   background-color: rgb(233, 232, 232);
   color: black;
+}
+
+#seconsLine{
+  font-size: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

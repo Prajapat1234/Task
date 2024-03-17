@@ -11,3 +11,10 @@ root.render(
 );
 
  
+// let x = true;
+// let y = "1";
+// let z = 1;
+
+// console.log(x == y);
+// console.log(x == z);
+

@@ -1,6 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import Card from './Card/Card';
 import './Display.css';
+
+
+
+export const Global = createContext(null)
 
 export default function Display() {
   const [data, setData] = useState([]);
@@ -8,35 +12,35 @@ export default function Display() {
   const [currentPage, setCurrentPage] = useState(1);
   const cardsPerPage = 6;
 
+
+
   useEffect(() => {
-    async function fetchData() {
+    function fetchData() {
       setTimeout(async () => {
         let data = await fetch('https://jsonplaceholder.typicode.com/posts')
         data = await data.json();
         setData(data)
         setLoading(false);
-        }, 3000);
+      }, 5000);
 
-      console.log(data)
-      console.log(data.title)
-      setLoading(false);
+      
     }
 
     fetchData();
   }, []);
 
-  
+
   if (loading) {
-    return <div id='LoadingView'>Loading....</div>;
+    return <> <div id='LoadingView'>Loading....</div>
+      <div id='seconsLine'>Wait for 5 sec...</div>
+    </>;
   }
+
 
   const indexLastCard = currentPage * cardsPerPage;
   const indexFirstCard = indexLastCard - cardsPerPage;
   const currentCards = data.slice(indexFirstCard, indexLastCard);
 
-  const handleRemoveCard = (id) => {
-    setData((previousData) => previousData.filter((card) => card.id !== id));
-  };
 
   const prevPage = () => {
     if (currentPage > 1) {
@@ -54,24 +58,31 @@ export default function Display() {
     }
   };
 
- 
+
+
+  const handleRemoveCard = (id) => {
+    setData((previousData) => previousData.filter((card) => card.id !== id));
+  };
 
   return (
     <>
-    <div id='Main'>
-      {currentCards.map((d) => (
-        <Card key={d.id} Title={d.title} Body={d.body} handleRemoveCard={handleRemoveCard} />
-      ))}
+      <div id='Main'>
+        {currentCards.map((d) => (
+          <Global.Provider value={handleRemoveCard}>
+            <Card id={d.id} Title={d.title} Body={d.body} />
+          </Global.Provider>
+        ))}
 
-    </div>
+      </div>
       {data.length > 0 && (
         <div id="pageChange">
           <button onClick={prevPage}>1</button>
           <button onClick={nextPage}>2</button>
-          <button onClick={nextOnePage}>3 
+          <button onClick={nextOnePage}>3
           </button>
         </div>
       )}
-      </>
+
+    </>
   );
 }
