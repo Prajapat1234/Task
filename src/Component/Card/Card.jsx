@@ -6,9 +6,9 @@ import { Global } from '../Display'
 
 export default function Card({ id, Title, Body }) {
 
-  const handleRemoveCard  = useContext(Global);
+  const handleRemoveCard = useContext(Global);
 
-  function Remove(){
+  function Remove() {
     handleRemoveCard(id);
   };
 
