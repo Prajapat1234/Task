@@ -8,7 +8,7 @@ export default function Card({ id, Title, Body }) {
 
   const handleRemoveCard  = useContext(Global);
 
-  const Remove = () => {
+  function Remove(){
     handleRemoveCard(id);
   };
 
